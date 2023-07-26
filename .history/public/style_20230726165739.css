@@ -1,0 +1,22 @@
+*,
+*::before,
+*::after {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+ 
+  scroll-behavior: smooth;
+}
+
+html {
+  font-size: 62.5%; /* 1rem = 10px */
+}
+:root {
+  --bg-color: #191d76;
+}
+
+
+body{
+  background-color: var(--main-bg-color);
+}
+
