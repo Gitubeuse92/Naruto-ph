@@ -95,7 +95,7 @@ class Article
 
         return $this;
     }
-    public function __toString():
+    public function__toString():
     string{
     return $this->title;
     }

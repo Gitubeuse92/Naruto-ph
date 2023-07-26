@@ -2,29 +2,27 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\AuthorRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category
+#[ORM\Entity(repositoryClass: AuthorRepository::class)]
+class Author
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $description = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $bio = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
-
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Article::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class, orphanRemoval: true)]
     private Collection $articles;
 
     public function __construct()
@@ -49,26 +47,14 @@ class Category
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getBio(): ?string
     {
-        return $this->description;
+        return $this->bio;
     }
 
-    public function setDescription(?string $description): static
+    public function setBio(?string $bio): static
     {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): static
-    {
-        $this->image = $image;
+        $this->bio = $bio;
 
         return $this;
     }
@@ -85,7 +71,7 @@ class Category
     {
         if (!$this->articles->contains($article)) {
             $this->articles->add($article);
-            $article->setCategory($this);
+            $article->setAuthor($this);
         }
 
         return $this;
@@ -95,15 +81,15 @@ class Category
     {
         if ($this->articles->removeElement($article)) {
             // set the owning side to null (unless already changed)
-            if ($article->getCategory() === $this) {
-                $article->setCategory(null);
+            if ($article->getAuthor() === $this) {
+                $article->setAuthor(null);
             }
         }
 
         return $this;
     }
-    public function __toString(): string
-    {
-        return $this->name;
+    public function__toString():
+    string{
+    return $this->name;
     }
 }
