@@ -31,6 +31,12 @@ class Article
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $subtitle = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
+    #[ORM\Column]
+    private ?bool $isPublished = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -98,5 +104,29 @@ class Article
     public function __toString():
     string{
     return $this->title;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function isIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(bool $isPublished): static
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
     }
 }
