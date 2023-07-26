@@ -17,10 +17,7 @@ class AppFixtures extends Fixture
 
         //Catégories       
         $str_categories = [
-            'Sorties',
-            'Histoire',
-            'Gastronomie',
-            'Premium'
+            'Chapitres',
         ];
 
         $obj_categories = array(count($str_categories));
