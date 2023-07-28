@@ -4,6 +4,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+ 
   scroll-behavior: smooth;
 }
 
@@ -15,6 +16,6 @@ html {
 /* #191d76 */
 
 body{
-  background-color: var(--bs-blue);
+  
 }
 
